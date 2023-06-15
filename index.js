@@ -13,7 +13,7 @@ app.get("/",(req, res)=>{
 
 app.post("/register", (req, res)=>{
     try {
-        if(!(req.body.username && req.body.email && req.body.password && req.body.phone_number && req.body.name)){
+        if(!(req.body.username && req.body.email && req.body.password)){
             res.status(400).json({message : "Data Belum Lengkap"})
         }
         if(!req.body.username.length>=3){
@@ -62,3 +62,54 @@ app.post("/bmi", (req,res) => {
 app.listen(process.env.APP_PORT, ()=>{
     console.log("apps jalan")
 })
+
+// contoh request dan response
+// register
+// request
+// {
+//     "email":"ganteng@mail.com",
+//     "username":"kegantengan",
+//     "password":"wajahkucantik1234",
+//     "confirm_password":"wajahkucantik1234"
+// }
+// response
+// {
+//     "message":"Register success"
+// }
+
+// login
+// request
+// {
+//     "email":"ganteng@mail.com",
+//     "password":"wajahkucantik1234"
+// }
+// response
+// {
+//     "message":"Login success",
+//     "data":{
+//         "id":"723652839547",
+//         "email":"ganteng@mail.com",
+//         "username":"kegantengan",
+//         "password":"KJVHzrvkiruyt85yt825y"
+//     }
+//     "access_token":"NVKFJSHgvueft7rtv38v7tyv3gshvn5kyh6yb56u",
+//     "refresh_token":"KJVHkSKJFGHvithgritgh875y45cuhejhkshgkfjb"
+// }
+
+// kalkulator bmi
+// request
+// {
+//     "berat":50,
+//     "tinggi":180,
+//     "kelamin":"pria"
+// }
+// response
+// {
+//     "BMI":14.5,
+//     "desc":"kurus",
+//     "tips":[
+//         "Tingkatkan konsumsi protein untuk mencapai berat badan ideal",
+//         "Untuk mencapai berat badan ideal kamu perlu makan makanan bergizi dan tingkatkan frekuensi makan",
+//         "Tingkatkan aktivitas dan berolahraga secara teratur, dan lakukan pola hidup sehat"    
+//     ]
+// }
