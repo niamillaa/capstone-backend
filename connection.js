@@ -3,11 +3,11 @@ require('dotenv').config()
 
 function newClient(){
 	const client = new Client({
-		user: process.env.USER,
-		host: process.env.HOST,
-		database: process.env.DATABASE,
-		password: process.env.PASSWORD,
-		port: process.env.PORT_DATABASE,
+		user: process.env.DATABASE_USER,
+		host: process.env.DATABASE_HOST,
+		database: process.env.DATABASE_NAME,
+		password: process.env.DATABASE_PASSWORD,
+		port: process.env.DATABASE_PORT,
 	})
 	return client
 }

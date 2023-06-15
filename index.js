@@ -2,6 +2,7 @@ const express=require('express');
 const { register, login } = require('./auth');
 const { bmi } = require('./bmi');
 const app=express();
+const cors = require('cors')
 
 app.use(express.json());
 app.use(cors())
