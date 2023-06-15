@@ -100,6 +100,7 @@ app.listen(process.env.APP_PORT, ()=>{
 // kalkulator bmi
 // request
 // {
+//     "id":"82357609845706"
 //     "berat":50,
 //     "tinggi":180,
 //     "kelamin":"pria"

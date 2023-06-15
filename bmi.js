@@ -4,7 +4,7 @@ const bmi = async (data) => {
     const client = newClient()
     client.connect()
     const bmi = (data.berat/((data.tinggi/100)*(data.tinggi/100))).toFixed(2)
-    const result = await client.query(`UPDATE public.user SET berat_badan = '${data.berat}', tinggi_badan = '${data.tinggi}' jenis_kelamin = '${data.kelamin}'`)
+    const result = await client.query(`UPDATE public.user SET berat_badan = '${data.berat}', tinggi_badan = '${data.tinggi}' jenis_kelamin = '${data.kelamin}' WHERE id=${data.id}`)
     client.end()
     if(bmi < 18.5){
         resolve({
