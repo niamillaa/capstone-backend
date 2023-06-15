@@ -60,7 +60,7 @@ app.post("/bmi", (req,res) => {
     }
 })
 
-app.listen(process.env.APP_PORT, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log("apps jalan")
 })
 
@@ -96,7 +96,7 @@ app.listen(process.env.APP_PORT, ()=>{
 //     "access_token":"NVKFJSHgvueft7rtv38v7tyv3gshvn5kyh6yb56u",
 //     "refresh_token":"KJVHkSKJFGHvithgritgh875y45cuhejhkshgkfjb"
 // }
-
+//
 // kalkulator bmi
 // request
 // {
