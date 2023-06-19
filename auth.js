@@ -37,21 +37,27 @@ const login=(data)=>{
         //     resolve({message : "Login success", data : result.rows[0]})
         //     client.end()
         // })
-        const result = await client.query(`SELECT * from public.user where username = '${data.username}'`)
-        if(result.rowCount===0){
-            reject({message : "Data Tidak Ditemukan"})
-        }
-        else{
-            const match = await bcrypt.compareSync(data.password, result.rows[0].password)
-            if(!match){
-                reject({ message : "Password Salah"})
-            } else {
-                const access_token = jwt.sign({id:result.rows[0].id}, process.env.ACCESS_TOKEN_SECRET,{expiresIn:"1d"})
-                const refresh_token = jwt.sign({id:result.rows[0].id}, process.env.REFRESH_TOKEN_SECRET,{expiresIn:"7d"})
-                resolve({message : "Login success", data : result.rows[0], access_token, refresh_token})    
+        try {
+            const result = await client.query(`SELECT * from public.user where username = '${data.username}'`)
+            if(result.rowCount===0){
+                reject({message : "Data Tidak Ditemukan"})
             }
+            else{
+                const match = await bcrypt.compareSync(data.password, result.rows[0].password)
+                if(!match){
+                    reject({ message : "Password Salah"})
+                } else {
+                    const access_token = jwt.sign({id:result.rows[0].id}, process.env.ACCESS_TOKEN_SECRET,{expiresIn:"1d"})
+                    const refresh_token = jwt.sign({id:result.rows[0].id}, process.env.REFRESH_TOKEN_SECRET,{expiresIn:"7d"})
+                    resolve({message : "Login success", data : result.rows[0], access_token, refresh_token})    
+                }
+            }
+            
+        } catch (error) {
+            reject(error)
+        } finally{
+            client.end()
         }
-        client.end()
     })
 }
 

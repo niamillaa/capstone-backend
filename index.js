@@ -35,16 +35,14 @@ app.post("/register", (req, res)=>{
 })
 
 app.post("/login", (req,res) => {
-    try {
-        if(!(req.body.username && req.body.password)){
-            res.status(400).json({message:"Data Belum Lengkap"})
-        }
-        return login(req.body).then((result) => {
-            res.json(result)
-        })
-    } catch (error) {
-        res.status(500).json(error.message)
+    if(!(req.body.username && req.body.password)){
+        res.status(400).json({message:"Data Belum Lengkap"})
     }
+    return login(req.body).then((result) => {
+        res.json(result)
+    }).catch((error) => {
+        res.status(500).json(error.message)
+    })
 })
 
 app.post("/bmi", (req,res) => {
