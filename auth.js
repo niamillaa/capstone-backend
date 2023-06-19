@@ -38,7 +38,7 @@ const login=(data)=>{
         //     client.end()
         // })
         const result = await client.query(`SELECT * from public.user where username = '${data.username}'`)
-        if(!result.rows[0]){
+        if(result.rowCount===0){
             reject({message : "Data Tidak Ditemukan"})
         }
         else{
